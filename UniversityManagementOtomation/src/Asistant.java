@@ -20,4 +20,5 @@ public class Asistant extends Academician
     {
         return super.getNameSurname()+" "+getBranch()+" alanında"+getTitle()+" dersinin quizini yaptı";
     }
+
 }
