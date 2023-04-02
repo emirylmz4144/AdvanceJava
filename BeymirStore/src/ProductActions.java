@@ -118,31 +118,47 @@ public class ProductActions
         
         if (filter.matches("\\d+"))
         {
-           int  ourFilter=Integer.parseInt(filter);
-          ProductMenager product=ourProductList.get(ourFilter);
-            String format = "| %-8s | %-30s | %-22s | %-12s | %-22s | %-25s | %-16s | %-22s | %-22s | %-16s | %-22s |\n";
-            System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
-            System.out.format("| ID       | Ürün Adı                       | Marka                  | Ekran Boyutu | Batarya Kapasitesi     | Depolama Kapasitesi       | RAM Kapasitesi   | Renk                   | Fiyat                  | Adet             | İndirim Oranı          |\n");
-            System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
-            System.out.format(format, product.getId(), product.getName(), product.getBrandOfPruduct().getName(), product.getScreenSize(), product.getBattaryPower(), product.getMemory(), product.getRam(), product.getColor(), product.getPrice(), product.getQuality(), product.getDiscountRate());
-            System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+            int  ourFilter=Integer.parseInt(filter);
+            if (ourProductList.containsKey(ourFilter))
+            {
+                ProductMenager product=ourProductList.get(ourFilter);
+                String format = "| %-8s | %-30s | %-22s | %-12s | %-22s | %-25s | %-16s | %-22s | %-22s | %-16s | %-22s |\n";
+                System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+                System.out.format("| ID       | Ürün Adı                       | Marka                  | Ekran Boyutu | Batarya Kapasitesi     | Depolama Kapasitesi       | RAM Kapasitesi   | Renk                   | Fiyat                  | Adet             | İndirim Oranı          |\n");
+                System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+                System.out.format(format, product.getId(), product.getName(), product.getBrandOfPruduct().getName(), product.getScreenSize(), product.getBattaryPower(), product.getMemory(), product.getRam(), product.getColor(), product.getPrice(), product.getQuality(), product.getDiscountRate());
+                System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+            }
+            else
+            {
+                System.out.println("Bu id numarasına sahip ürün bulunamadı");
+            }
+
 
         }
         else if(filter.matches("\\D+"))
         {
-            for (ProductMenager product:ourProductList.values())
+            if (ourProductList.values().stream().anyMatch(p->p.getBrandOfPruduct().getName().equals(filter)))
             {
-                if (product.getBrandOfPruduct().getName().equals(filter))
+                for (ProductMenager product:ourProductList.values())
                 {
-                    String format = "| %-8s | %-30s | %-22s | %-12s | %-22s | %-25s | %-16s | %-22s | %-22s | %-16s | %-22s |\n";
-                    System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
-                    System.out.format("| ID       | Ürün Adı                       | Marka                  | Ekran Boyutu | Batarya Kapasitesi     | Depolama Kapasitesi       | RAM Kapasitesi   | Renk                   | Fiyat                  | Adet             | İndirim Oranı          |\n");
-                    System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
-                    System.out.format(format, product.getId(), product.getName(), product.getBrandOfPruduct().getName(), product.getScreenSize(), product.getBattaryPower(), product.getMemory(), product.getRam(), product.getColor(), product.getPrice(), product.getQuality(), product.getDiscountRate());
-                    System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+                    if (product.getBrandOfPruduct().getName().equals(filter))
+                    {
+                        String format = "| %-8s | %-30s | %-22s | %-12s | %-22s | %-25s | %-16s | %-22s | %-22s | %-16s | %-22s |\n";
+                        System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+                        System.out.format("| ID       | Ürün Adı                       | Marka                  | Ekran Boyutu | Batarya Kapasitesi     | Depolama Kapasitesi       | RAM Kapasitesi   | Renk                   | Fiyat                  | Adet             | İndirim Oranı          |\n");
+                        System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+                        System.out.format(format, product.getId(), product.getName(), product.getBrandOfPruduct().getName(), product.getScreenSize(), product.getBattaryPower(), product.getMemory(), product.getRam(), product.getColor(), product.getPrice(), product.getQuality(), product.getDiscountRate());
+                        System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
+                    }
                 }
             }
-        }
+            else
+            {
+                System.out.println("Belirtilen marka ile eşleşen bir ürün bulunamadı");
+            }
+
+         }
         else
         {
             System.out.println("Filtreleme id veya markaya göre yapılıyor lütfen bu değerlerden birini giriniz");
