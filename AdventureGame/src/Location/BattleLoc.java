@@ -3,12 +3,11 @@ import Obstacle.*;
 import Player.*;
 import java.util.Random;
 
+//Savaş alanlarını temsil etmek için oluşturulmuştur
 public abstract class BattleLoc extends Location
 {
-    Obstacle obstacle;
+    Obstacle obstacle;//Her lokasyonun kendine özgü canavarı olacaktır
     Random random = new Random();
-    private int obstacleQuality;
-
 
     public BattleLoc(String name, Player player, Obstacle obstacle)
     {

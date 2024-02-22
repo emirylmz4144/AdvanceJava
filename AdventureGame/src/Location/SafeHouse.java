@@ -7,6 +7,7 @@ public class SafeHouse extends NormalLoc
     {
         super("Güvenli Ev", player);
     }
+    /**Oyuncunun canının yenilenmesi sağlanır**/
     @Override
     public boolean onLocation()
     {

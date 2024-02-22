@@ -16,6 +16,7 @@ public abstract class  GameCharacter
         this.demage = demage;
     }
 
+    /**Karakter bilgilerini yazdırır**/
     public static void characterInformations()
     {
         GameCharacter [] characters= {new Samurai(),new Archer(),new Knight(),new Legion()};

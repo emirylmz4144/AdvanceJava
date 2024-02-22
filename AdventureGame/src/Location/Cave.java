@@ -7,13 +7,16 @@ import java.util.Scanner;
 
 public class Cave extends BattleLoc
 {
-    Inventory inventory=new Inventory("Ekmek");
+    Inventories inventory=new Inventories("Ekmek");//mekanın kendine özgü ekipmanı
     Scanner input=new Scanner(System.in);
     int obstacleQuality;
-    public Cave(Player player) {
+
+    //sub class olduğu için kod okunurluğunu arttırmak amacıyola bu sınıf ve constructor sadece ilgili lokasyona atama yapmak için vardır
+    public Cave(Player player)
+    {
         super("Mağara", player, new Zombie());
     }
-    public void locationBehavior()//lokasyona davranışının 0lduğu metottur
+    public void locationBehavior()//lokasyona davranışının Olduğu metottur
     {
 
         System.out.println("Dikkat et Mağarada " + obstacle.getName() + " karşılaşabilirsin..  ");
@@ -42,7 +45,7 @@ public class Cave extends BattleLoc
 
         while (getObstacleQuality() > 0)
         {
-            obstacle.setHealty(obstacle.getStartHealty());  // tüm düşmanlar ölene dek ölen düşmandan sonrabir sonraki düşman için can hazırlanır
+            obstacle.setHealty(obstacle.getStartHealty());  // tüm düşmanlar ölene dek ölen düşmandan sonra bir sonraki düşman için can hazırlanır
             System.out.println("Dikkat et burada " + getObstacleQuality() + " adet " + obstacle.getName() + " var");// Güncel düşman
 
 
@@ -53,7 +56,7 @@ public class Cave extends BattleLoc
                 if (priority() <= 9 && priority() > 7) // Random sayı belirtilen aralıktaysa canavar saldırır
                 {
                     System.out.println(obstacle.getName() + " Size " + obstacle.getDemage() + " gücünde atak yaptı ");
-                    player.setHealty(player.getHealty() - (obstacle.getDemage() - player.getInventory().getArmorDefence()));
+                    player.setHealty(player.getHealty() - (obstacle.getDemage() - player.getInventories().getArmorDefence()));
 
 
                     if (player.getHealty() < 0)
@@ -63,9 +66,7 @@ public class Cave extends BattleLoc
                         break;// oyuncu ölünce savaş biter
                     }
 
-
                     System.out.println("Kalan canınız: " + player.getHealty());
-
 
                 }
                 else if (priority() > 0 && priority() <= 5)// random sayı belirtilen aralıktaysa biz atak yaparız
@@ -78,14 +79,15 @@ public class Cave extends BattleLoc
                         System.out.println("Lütfen geçerli bir işlem giriniz: ");
                         attackChoose = input.nextInt();
                     }
-                    if (attackChoose == 1) {
+                    if (attackChoose == 1)
+                    {
                         System.out.println(obstacle.getName() + " üzerine saldırı düzenlediniz..");
-                        obstacle.setHealty(obstacle.getHealty() - (player.getDemage() + player.getInventory().getWeaponDemage()));
+                        obstacle.setHealty(obstacle.getHealty() - (player.getDemage() + player.getInventories().getWeaponDemage()));
 
 
-                        if (obstacle.getHealty() <= 0) {
+                        if (obstacle.getHealty() <= 0)
                             obstacle.setHealty(0);//Canavar canı 0'dan küçükse canavar canı 0 atanır
-                        }
+
 
                         if (obstacle.getHealty() == 0) {
                             System.out.println("1 adet " + obstacle.getName() + " Öldürdünüz ");
@@ -94,10 +96,11 @@ public class Cave extends BattleLoc
                             System.out.println("Kalan " + obstacle.getName() + " sayısı: " + getObstacleQuality());
                             break;
                         }
-                        if (obstacle.getHealty() > 0) {
+                        if (obstacle.getHealty() > 0)
                             System.out.println(obstacle.getName() + " kalan canı: " + obstacle.getHealty());
-                        }
-                    } else
+
+                    }
+                    else
                     {
                         player.selectLocation();
                         break;
@@ -109,16 +112,15 @@ public class Cave extends BattleLoc
                 break;
             }
             else if (attackChoose==2)
-            {
                 break;
-            }
+
         }
         if (getObstacleQuality()==0)
         {
 
             System.out.println("Tebrikler tüm düşmanları öldürdünüz ");
-            player.getInventory().setFood(true);
-            System.out.println(player.getInventory().isFood());
+            player.getInventories().setFood(true);
+            System.out.println(player.getInventories().isFood());
             System.out.println("Kazandığınız item: "+inventory.getInventoryOfLocationName());
         }
 

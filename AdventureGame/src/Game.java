@@ -1,11 +1,10 @@
-import Location.*;
+
 import Player.*;
 
 public class Game
 {
   Player player=new Player();
 
-  Location location;
 
      public void run()
      {
@@ -17,16 +16,17 @@ public class Game
 
            while (true)
                {
-                   if (!player.getInventory().isFireWood() || !player.getInventory().isFood()|| !player.getInventory().isWater())
+                   //Tüm ekipmanlar alınmamış ve oyuncu yaşıyorsa(yaşamıyorsa ihtimali o ihtimalin olduğu yerde oyunu sonlandırır) oyun devam eder
+                   if (!player.getInventories().isFireWood() || !player.getInventories().isFood()|| !player.getInventories().isWater())
                    {
-                       System.out.println(player.getInventory().isFood());
+                       System.out.println(player.getInventories().isFood());
                        player.selectLocation();
                    }
+                   //Oyuncu öldüyse oyun biter
                    else if (player.getHealty()<=0)
-                   {
                        break;
-                   }
-                   else if (player.getInventory().isFireWood() || player.getInventory().isFood()|| player.getInventory().isWater())
+                   //Oyuncu tüm ekipmanları elde ettiyse oyunu kazanır
+                   else if (player.getInventories().isFireWood() || player.getInventories().isFood()|| player.getInventories().isWater())
                    {
                        System.out.println(
                                "Tebrikler şovalye tüm bu zorluklardan kurtulup" +

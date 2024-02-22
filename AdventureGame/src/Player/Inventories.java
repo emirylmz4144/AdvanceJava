@@ -1,6 +1,6 @@
 package Player;
 
-public class Inventory
+public class Inventories
 {
     private String inventoryOfLocationName;
     private boolean water;
@@ -10,7 +10,7 @@ public class Inventory
     private String armorName;
     private int weaponDemage;
     private int armorDefence;
-    public Inventory (String inventoryOfLocation)
+    public Inventories(String inventoryOfLocation)
     {
         this.inventoryOfLocationName =inventoryOfLocation;
     }

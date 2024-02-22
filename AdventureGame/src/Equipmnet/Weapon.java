@@ -7,6 +7,7 @@ public abstract class Weapon
     private int demage;
     private int price;
 
+    //Saldırı aletlerini temsil eder
     public Weapon(int ID, String name, int demage, int price) {
         this.ID = ID;
         this.name = name;

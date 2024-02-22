@@ -5,10 +5,12 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 
-public class tokenizer {
+public class Tokenizer {
     static Scanner input=new Scanner(System.in);
     static FileInputStream fstream;
     static BufferedReader br;
+
+    //Kelimelerin tokenlaştırılıp belleğe atılmasını taklit etmek için ram'i taklit edecek bir dizi
     static String [] CS =new String[500];
 
     static  int i=0;
@@ -18,7 +20,7 @@ public class tokenizer {
                 "(Dosyayı proje Ana proje dosyası içine koymayı unutmayın" +
                 " yani src/idea/out gibi yerlere değil bizzat proje dosyası(Tokenizer) içine atin)"); String fileName=input.nextLine();
 
-        connectToFile(fileName);
+        connectToFile(fileName);//Dosya'ya bağlanarak komutlar alıcacaktır
 
         String strLine;//Dosyadaki her bir satırı okumak için geçici satır değişkeni
         while ((strLine = br.readLine()) != null) {
@@ -28,9 +30,8 @@ public class tokenizer {
 
         for (String token : CS) {
             if (token!=null)
-            {
                 System.out.println(token);
-            }
+
         }
 
         fstream.close();

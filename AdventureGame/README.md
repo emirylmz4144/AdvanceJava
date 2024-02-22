@@ -1,5 +1,30 @@
 ## Adventure Game
 
+### Oyunun amacı
+
+```
+Oyunun amacı oyuncuya çeşitli karakterler sunup bu karakterlerden biri
+ile oyunda bulunan 3 savaş bölgesine gidip orada bulunan ekipmanların 
+hepsini topladıktan sonra oyunu kazanmaktır
+
+```
+
+### Genel İşleyiş 
+
+```
+Oyunumuzun genel işleyişinde oyuncu önce karakter seçimini yapar.
+Ardından 3 savaş mekanına gidip buradaki eşyaları toplayamaya çalışır
+fakat her mekanın kendine özgü bir canavarı ve canavarların kendilerine
+ait güçleri vardır.Her mekana her girişte kaç adet canavar çıkacağı 
+oyun tarafından belirlenir ve öldürülen her canavardan belli miktarda para
+çıkar bu paralarla oyuncu savunma veya saldırı araçları alabilir.
+Oyuncu canı çok azaldıysa güvenli eve gidip bir kahve içip canını 
+yeniledikten sonra ise silah dükkanına gidip bahsedilen araçları alabilir
+Tüm ekipmanlar kazanıldıktan sonra bu cehennemden oyuncu ya kurtulur
+ya da ölür 
+
+```
+
 We are making a text based adventure game with Java
 
 #### Characters:

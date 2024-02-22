@@ -3,7 +3,7 @@ package Location;
 import Player.*;
 
 public abstract class Location {
-    Player player;
+    Player player;//Oyuncu lokasyonna geleceği için oyuncu nesnesi burada oluşturulur
     private String name;
     Location(String name,Player player)
     {

@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class Forest extends BattleLoc {
     Scanner input = new Scanner(System.in);
-    Inventory inventory = new Inventory("Odun"); /*Tüm canavarlar öldürüldüğü zaman lokasyona ait item kazanılacağı için
-                                         inventory nesnesi üretilir*/
+    Inventories inventory = new Inventories("Odun"); //mekanın kendine özgü ekipmanı
     int obstacleQuality;
 
     /*
@@ -59,7 +58,7 @@ public class Forest extends BattleLoc {
                 if (priority() <= 9 && priority() > 7) // Random sayı belirtilen aralıktaysa canavar saldırır
                 {
                     System.out.println(obstacle.getName() + " Size " + obstacle.getDemage() + " gücünde atak yaptı ");
-                    player.setHealty(player.getHealty() - (obstacle.getDemage() - player.getInventory().getArmorDefence()));
+                    player.setHealty(player.getHealty() - (obstacle.getDemage() - player.getInventories().getArmorDefence()));
 
 
                     if (player.getHealty() < 0)
@@ -86,7 +85,7 @@ public class Forest extends BattleLoc {
                     }
                     if (attackChoose == 1) {
                         System.out.println(obstacle.getName() + " üzerine saldırı düzenlediniz..");
-                        obstacle.setHealty(obstacle.getHealty() - (player.getDemage() + player.getInventory().getWeaponDemage()));
+                        obstacle.setHealty(obstacle.getHealty() - (player.getDemage() + player.getInventories().getWeaponDemage()));
 
 
                         if (obstacle.getHealty() <= 0) {
@@ -122,7 +121,7 @@ public class Forest extends BattleLoc {
         if (getObstacleQuality()==0)
         {
             System.out.println("Tebrikler tüm düşmanları öldürdünüz ");
-            player.getInventory().setFireWood(true);
+            player.getInventories().setFireWood(true);
             System.out.println("Kazandığınız item: "+inventory.getInventoryOfLocationName());
 
         }

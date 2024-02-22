@@ -7,6 +7,7 @@ public abstract class Armor
    private int block;
    private int price;
 
+   //Savunma aletlerini temsil eder
     public Armor(int ID, String name, int block, int price) {
         this.ID = ID;
         this.name = name;

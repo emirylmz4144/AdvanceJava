@@ -75,6 +75,7 @@ public class ToolStore extends NormalLoc
                     "Zırh Fiyatı: "+armor.getPrice());
         }
     }
+
     public void buyWeapon()
     {
         Weapon weapon=null;
@@ -90,30 +91,23 @@ public class ToolStore extends NormalLoc
         switch (choose)
         {
             case 1 :
-            {
                 weapon = new Pistol();
-                player.getInventory().setWeaponDemage(weapon.getDemage());
-            }
+                player.getInventories().setWeaponDemage(weapon.getDemage());
             break;
+
             case 2 :
-            {
                 weapon = new Sword();
-                player.getInventory().setWeaponDemage(weapon.getDemage());
-            }
+                player.getInventories().setWeaponDemage(weapon.getDemage());
             break;
 
             case 3 :
-            {
                weapon = new Rifle();
-               player.getInventory().setWeaponDemage(weapon.getDemage());
-            }
+               player.getInventories().setWeaponDemage(weapon.getDemage());
             break;
 
              case 4 :
-             {
                 weapon = new Stunner();
-                player.getInventory().setWeaponDemage(weapon.getDemage());
-             }
+                player.getInventories().setWeaponDemage(weapon.getDemage());
              break;
         }
 
@@ -156,25 +150,25 @@ public class ToolStore extends NormalLoc
             case 1 :
             {
                 armor = new Light();
-                player.getInventory().setArmorDefence(armor.getBlock());
+                player.getInventories().setArmorDefence(armor.getBlock());
             }
             break;
             case 2 :
             {
                 armor = new Medium();
-                player.getInventory().setArmorDefence(armor.getBlock());
+                player.getInventories().setArmorDefence(armor.getBlock());
             }
             break;
             case 3 :
             {
                 armor = new Heavy();
-                player.getInventory().setArmorDefence(armor.getBlock());
+                player.getInventories().setArmorDefence(armor.getBlock());
             }
             break;
             case 4 :
             {
                 armor = new Strong();
-                player.getInventory().setArmorDefence(armor.getBlock());
+                player.getInventories().setArmorDefence(armor.getBlock());
             }
             break;
         }

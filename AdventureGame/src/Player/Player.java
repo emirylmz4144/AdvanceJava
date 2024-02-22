@@ -17,7 +17,7 @@ public class Player
    private int money;
    private int startMoney;
 
-   private Inventory inventory=new Inventory("null");
+   private Inventories inventories =new Inventories("null");//Tüm inventorler toplandığı zaman oyun kazanılacak
    Scanner input=new Scanner(System.in);
 
 
@@ -80,6 +80,7 @@ public class Player
         }
         switch (choose)
         {
+            //this dediği bu sınıf yani oyuncudur
             case 1:
                 location=new SafeHouse(this);
                 break;
@@ -96,7 +97,7 @@ public class Player
                 location=new River(this);
                 break;
         }
-        location.onLocation();
+        location.onLocation();//Gidilen lokasyona özgü olayların gerçekleştirildiği yer.
     }
 
 
@@ -140,8 +141,8 @@ public class Player
         this.money = money;
     }
 
-    public Inventory getInventory() {
-        return inventory;
+    public Inventories getInventories() {
+        return inventories;
     }
 
     public int getStartDemage() {
@@ -168,7 +169,7 @@ public class Player
         this.startMoney = startMoney;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public void setInventories(Inventories inventories) {
+        this.inventories = inventories;
     }
 }
