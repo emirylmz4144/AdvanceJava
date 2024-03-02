@@ -1,6 +1,7 @@
-public class ProductMenager
+public class Product
 {
 
+    //Notebook ve telefonlar ürün classından inheritence olacak
     private String name;
     private int price;
     private int discountRate;
@@ -19,7 +20,7 @@ public class ProductMenager
     private static int nextId=1;
     private int id;
 
-    public ProductMenager(String name,Brand brandOfPruduct, double screenSize,double battaryPower,int memory,int ram,  String color,  int price, int quality,int discountRate) {
+    public Product(String name, Brand brandOfPruduct, double screenSize, double battaryPower, int memory, int ram, String color, int price, int quality, int discountRate) {
         this.name = name;
         this.brandOfPruduct = brandOfPruduct;
         this.screenSize = screenSize;

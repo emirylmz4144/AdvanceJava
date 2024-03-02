@@ -1,8 +1,9 @@
 import java.util.HashMap;
 
-public class Telephone extends ProductMenager {
+public class Telephone extends Product {
 
-   public static HashMap<Integer,ProductMenager> ourTelephones =new HashMap<>();
+    //Oluşacak her ürün ID değerine göre haritalandırılacak
+   public static HashMap<Integer, Product> ourTelephones =new HashMap<>();
 
 
     public Telephone(String name, Brand brandOfPruduct, double screenSize, double battaryPower, int memory, int ram, String color, int price, int quality, int discountRate) {

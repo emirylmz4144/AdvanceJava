@@ -20,6 +20,9 @@ public class Store
                     0-Çıkış""");
 
             int choose=input.nextInt();
+            /*Aksiyon telefon ve notebook'a göre değişiklik göstereceğinden programın çalışma akışına göre telefon veya notebook
+            parametre olarak product aksiyon'a gönderilir
+             */
             switch (choose)
             {
                 case 1 -> productActions.run(NoteBook.ourNoteBooks);
@@ -31,6 +34,7 @@ public class Store
         }
     }
 
+    //Markaları listeleme
     public void listToBrand()
     {
         for (Brand brand:Brand.ourBrands)

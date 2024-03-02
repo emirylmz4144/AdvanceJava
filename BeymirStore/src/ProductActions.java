@@ -3,7 +3,7 @@ import java.util.*;
 public class ProductActions
 {
     Scanner input=new Scanner(System.in);
-    public  void run(HashMap<Integer,ProductMenager> ourProductList)
+    public  void run(HashMap<Integer, Product> ourProductList)
     {
         boolean status=true;
         while (status)
@@ -30,7 +30,12 @@ public class ProductActions
         }
     }
 
-    public void addAProduct(HashMap<Integer,ProductMenager> ourProductList)
+    /**Ürün eklemek için kullanılan
+     *  @param  ourProductList
+     *  parametre olarak alır çünkü notebook crud işlemleri olacaksa notebook hashmap'i alınmalı
+     *  telephone alınacaksa telephone hashmap'i alınmalıdır
+     * **/
+    public void addAProduct(HashMap<Integer, Product> ourProductList)
     {
         System.out.print("Lütfen ürünün adını giriniz: ");input.nextLine();
         String productName=input.nextLine();
@@ -38,6 +43,7 @@ public class ProductActions
         Brand ourBrand=null;
         boolean status=true;
 
+        //Sisteme kaydedilmiş (anlaşmalı marka simülasyonu) markalardan ekleme yapılabilir
         while(status)
         {
             System.out.print("Lütfen (sistemde kayıtlı ürünlerden) ürünün markasını giriniz: ");
@@ -49,6 +55,8 @@ public class ProductActions
                     ourBrand=brand;
                     status=false;
                 }
+                else
+                    System.out.println("Anlaşmalı markalardan ürün ekleyebilirsiniz");
             }
         }
 
@@ -77,12 +85,17 @@ public class ProductActions
         int discountRate=input.nextInt();
 
 
-        ProductMenager newProduct=new ProductMenager(productName,ourBrand,screenSize,bataryPower,memory,ram,color,price,quality,discountRate);
+        Product newProduct=new Product(productName,ourBrand,screenSize,bataryPower,memory,ram,color,price,quality,discountRate);
         ourProductList.put(newProduct.getId(),newProduct);
 
 
     }
-    public void deleteToProduct(HashMap<Integer,ProductMenager> ourProductList)
+
+    /**Ürün silme için kullanılır
+     *
+     * @param ourProductList
+     */
+    public void deleteToProduct(HashMap<Integer, Product> ourProductList)
     {
         System.out.print("Lütfen silmek istediğiniz ürünün id'sini giriniz ");
         int id=input.nextInt();
@@ -99,29 +112,39 @@ public class ProductActions
 
     }
 
-    public void listToProducts(HashMap<Integer,ProductMenager> ourProductList)
+    /**Ürünleri listelemek için kullanılır
+     *
+     * @param ourProductList
+     */
+    public void listToProducts(HashMap<Integer, Product> ourProductList)
     {
         String format = "| %-8s | %-30s | %-22s | %-12s | %-22s | %-25s | %-16s | %-22s | %-22s | %-16s | %-22s |\n";
         System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
         System.out.format("| ID       | Ürün Adı                       | Marka                  | Ekran Boyutu | Batarya Kapasitesi     | Depolama Kapasitesi       | RAM Kapasitesi   | Renk                   | Fiyat                  | Adet             | İndirim Oranı          |\n");
         System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
-           for (ProductMenager product:ourProductList.values())
+           for (Product product:ourProductList.values())
            {
                System.out.format(format, product.getId(), product.getName(), product.getBrandOfPruduct().getName(), product.getScreenSize(), product.getBattaryPower(), product.getMemory(), product.getRam(), product.getColor(), product.getPrice(), product.getQuality(), product.getDiscountRate());
                System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
            }
     }
-    public void searchByFilter(HashMap<Integer,ProductMenager> ourProductList)
+
+    /**Ürün filtrelemeyi id ve isim değerine göre mi gireceksiniz
+     * bilgisini sormadan girilen değer sayıysa id;
+     * değilse ürün ismine göre regex sayesinde otomotik arama yapma
+     * @param ourProductList
+     */
+    public void searchByFilter(HashMap<Integer, Product> ourProductList)
     {
         System.out.println("Filtrele: "); input.nextLine();
         String filter=input.nextLine();
         
-        if (filter.matches("\\d+"))
+        if (filter.matches("\\d+"))//ID numarasına göre arama
         {
             int  ourFilter=Integer.parseInt(filter);
             if (ourProductList.containsKey(ourFilter))
             {
-                ProductMenager product=ourProductList.get(ourFilter);
+                Product product=ourProductList.get(ourFilter);
                 String format = "| %-8s | %-30s | %-22s | %-12s | %-22s | %-25s | %-16s | %-22s | %-22s | %-16s | %-22s |\n";
                 System.out.format("+----------+--------------------------------+------------------------+--------------+------------------------+---------------------------+------------------+------------------------+------------------------+------------------+------------------------+\n");
                 System.out.format("| ID       | Ürün Adı                       | Marka                  | Ekran Boyutu | Batarya Kapasitesi     | Depolama Kapasitesi       | RAM Kapasitesi   | Renk                   | Fiyat                  | Adet             | İndirim Oranı          |\n");
@@ -136,11 +159,11 @@ public class ProductActions
 
 
         }
-        else if(filter.matches("\\D+"))
+        else if(filter.matches("\\D+"))//İsme göre arama
         {
             if (ourProductList.values().stream().anyMatch(p->p.getBrandOfPruduct().getName().equals(filter)))
             {
-                for (ProductMenager product:ourProductList.values())
+                for (Product product:ourProductList.values())
                 {
                     if (product.getBrandOfPruduct().getName().equals(filter))
                     {

@@ -12,8 +12,9 @@ public class Brand
     {
         this.name=name;
         this.id=nextId;
-        if (nextId>9)
+        if (nextId>9)//default olarak eklenen değerler tekrar eklenmesin diye constructor içine bu şart koyuldu
             ourBrands.add(this);
+
         nextId++;
 
         ourBrands.sort(Comparator.comparing(Brand::getName));
@@ -35,6 +36,7 @@ public class Brand
         this.id = id;
     }
 
+    //scope code blocks ile default markalar atandı
     static
     {
         ourBrands.add(new Brand("Samsung"));
