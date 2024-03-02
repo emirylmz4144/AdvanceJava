@@ -22,7 +22,9 @@ public class Book implements Comparable<Book>
     }
 
 
-    // karşılaştırma için compareTo metodu oluşturulmuştur
+    /* karşılaştırma için compareTo metodu oluşturulmuştur bu sayede sıralı yapının neye göre olacağı
+    küme elamanlarının nasıl yoklanacağı belirleniyor
+     */
     @Override
     public int compareTo(Book book) {
        return this.bookName.compareTo(book.bookName);

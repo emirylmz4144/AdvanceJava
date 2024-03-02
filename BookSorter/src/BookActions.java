@@ -47,6 +47,10 @@ public class BookActions
 
     }
 
+    /**Alfabetik sıralama yapar
+     *
+     * @param ourBooks
+     */
     public void sortByAlf(Set<Book> ourBooks)
     {
         /*
@@ -54,13 +58,18 @@ public class BookActions
         * Bu TreeSet yapısının yapıları otomatik olarak sıralayıp bize vermesidir tek yapmamız gereken anonmymous
         * class oluşturup sıralama biçimini belirlemektir
          */
-        Set<Book> ourBook=new TreeSet<>(new Comparator<Book>() {
+        Set<Book> ourBook=new TreeSet<>((a,b)->a.getBookName().compareTo(b.getBookName()));
+
+
+        /*
+         Set<Book> ourBook=new TreeSet<>(new Comparator<Book>() {
             @Override
             public int compare(Book o1, Book o2) {
                 return o1.getBookName().compareTo(o2.getBookName());
             }
 
         });
+         */
 
         ourBook.addAll(ourBooks);
 
@@ -75,6 +84,10 @@ public class BookActions
         }
     }
 
+    /**Sayfa sayısına göre filtreleme yapar
+     *
+     * @param ourBooks
+     */
     public void sortByNumber(Set<Book> ourBooks)
     {
         /*
@@ -82,12 +95,15 @@ public class BookActions
          * Bu TreeSet yapısının yapıları otomatik olarak sıralayıp bize vermesidir tek yapmamız gereken anonmymous
          * class oluşturup sıralama biçimini belirlemektir
          */
-        Set<Book> ourBook=new TreeSet<>(new Comparator<>() {
+        Set<Book> ourBook=new TreeSet<>((a,b)->Integer.compare(a.getBookPageNumber(),b.getBookPageNumber()));
+        /*
+         Set<Book> ourBook=new TreeSet<>(new Comparator<>() {
             @Override
             public int compare(Book o1, Book o2) {
                 return Integer.compare(o1.getBookPageNumber(), o2.getBookPageNumber());
             }
         });
+         */
 
         ourBook.addAll(ourBooks);
 
